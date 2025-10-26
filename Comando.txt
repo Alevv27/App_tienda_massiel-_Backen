@@ -1,0 +1,23 @@
+-------------------------------------------------------------
+Utiliza estos comandos para desplegar este proyecto en local
+-------------------------------------------------------------
+
+
+py -3 -m venv .venv
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy 
+
+.venv\Scripts\activate
+
+py -m pip install --upgrade pip
+
+pip install Flask
+
+pip install Flask Flask-SQLAlchemy pyodbc
+
+python app.py
+
+--------------------------------------------------------------
+Grupo 2 
+Lider: Alejandro Camayteri
+--------------------------------------------------------------
