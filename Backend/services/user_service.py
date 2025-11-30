@@ -90,7 +90,7 @@ class UserService:
         perfil_id = body.get("perfil_id")
         empresa_id = body.get("empresa_id")
         activo = body.get("activo")
-
+        password = body.get("password")
         if nombre is not None:
             u.nombre = nombre.strip()
         if email is not None:
@@ -108,7 +108,15 @@ class UserService:
             u.empresa_id = empresa_id
         if activo is not None:
             u.activo = bool(activo)
-
+         #  ACTUALIZAR CONTRASEÑA
+        if password is not None and password.strip() != "":
+            cred = Credencial.query.filter_by(usuario_id=u.id).first()
+        if cred:
+            cred.password = password
+        else:
+            cred = Credencial(usuario_id=u.id, password=password)
+            db.session.add(cred)
+        
         db.session.commit()
         return {"ok": True, "usuario": UserService._usuario_payload(u)}, 200
 
